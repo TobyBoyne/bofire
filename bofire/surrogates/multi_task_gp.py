@@ -69,13 +69,14 @@ class MultiTaskGPSurrogate(BotorchSurrogate, TrainableSurrogate):
                 ),  # kernel is for input space so we subtract one for the fidelity index
                 ard_num_dims=1,  # this keyword is ingored
             ),
-            task_covar_prior=priors.map(self.lkj_prior),
             outcome_transform=Standardize(m=tY.shape[-1])
             if self.output_scaler == ScalerEnum.STANDARDIZE
             else None,
             input_transform=scaler,
         )
-
+        self.model.task_covar_module.register_prior(
+            "IndexKernelPrior", priors.map(self.lkj_prior), _index_kernel_prior_closure
+        )
         self.model.likelihood.noise_covar.noise_prior = priors.map(self.noise_prior)  # type: ignore
 
         mll = ExactMarginalLogLikelihood(self.model.likelihood, self.model)
@@ -90,3 +91,7 @@ class MultiTaskGPSurrogate(BotorchSurrogate, TrainableSurrogate):
             # add the observation noise to the stds
             stds = np.sqrt(vars + self.model.likelihood.noise.cpu().detach().numpy())
         return preds, stds
+
+
+def _index_kernel_prior_closure(m):
+    return m._eval_covar_matrix()
