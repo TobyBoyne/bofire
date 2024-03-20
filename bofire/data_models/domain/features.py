@@ -51,7 +51,7 @@ class _BaseFeatures(BaseModel, Generic[F]):
     """
 
     type: Literal["Features"] = "Features"
-    features: Sequence[F] = Field(default_factory=lambda: [])
+    features: FeatureSequence = Field(default_factory=lambda: [])
 
     @field_validator("features")
     @classmethod
@@ -122,7 +122,7 @@ class _BaseFeatures(BaseModel, Generic[F]):
 
     def get(
         self,
-        includes: Union[Type, List[Type]] = F,
+        includes: Union[Type, List[Type]] = AnyFeature,
         excludes: Union[Type, List[Type]] = None,  # type: ignore
         exact: bool = False,
     ) -> Self:
@@ -150,7 +150,7 @@ class _BaseFeatures(BaseModel, Generic[F]):
 
     def get_keys(
         self,
-        includes: Union[Type, List[Type]] = F,
+        includes: Union[Type, List[Type]] = AnyFeature,
         excludes: Union[Type, List[Type]] = None,  # type: ignore
         exact: bool = False,
     ) -> List[str]:
