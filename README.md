@@ -193,18 +193,6 @@ Documentation including a section on how to get started can be found under https
 
 ## Reference
 
-We would love for you to use BoFire in your work! If you do, please cite [our paper](https://arxiv.org/abs/2408.05040):
-
-    @misc{durholt2024bofire,
-      title={BoFire: Bayesian Optimization Framework Intended for Real Experiments},
-      author={Johannes P. D{\"{u}}rholt and Thomas S. Asche and Johanna Kleinekorte and Gabriel Mancino-Ball and Benjamin Schiller and Simon Sung and Julian Keupp and Aaron Osburg and Toby Boyne and Ruth Misener and Rosona Eldred and Wagner Steuer Costa and Chrysoula Kappatou and Robert M. Lee and Dominik Linzner and David Walz and Niklas Wulkow and Behrang Shafei},
-      year={2024},
-      eprint={2408.05040},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2408.05040},
-    }
-
 Bayesian optimization in BoFire is based on META's [BoTorch library](https://botorch.org/). For BoTorch, please cite also the [botorch paper](https://proceedings.neurips.cc/paper_files/paper/2020/hash/f5b1b89d98b7286673128a5fb112cb9a-Abstract.html):
 
     @inproceedings{NEURIPS2020_f5b1b89d,
