@@ -71,7 +71,6 @@ _KERNEL_TYPES: list[type[Kernel]] = [
     WassersteinKernel,
     WedgeKernel,
     DownsamplingKernel,
-    FidelityKernel,
 ]
 
 AnyKernel = tagged_union(*_KERNEL_TYPES)
