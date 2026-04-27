@@ -1,5 +1,3 @@
-from typing import Union
-
 from bofire.data_models.strategies.doe import DoEStrategy
 from bofire.data_models.strategies.factorial import FactorialStrategy
 from bofire.data_models.strategies.fractional_factorial import (
@@ -26,9 +24,11 @@ from bofire.data_models.strategies.predictives.sobo import (
 )
 from bofire.data_models.strategies.random import RandomStrategy
 from bofire.data_models.strategies.shortest_path import ShortestPathStrategy
+from bofire.data_models.strategies.strategy import Strategy
+from bofire.data_models.unions import tagged_union
 
 
-ActualStrategy = Union[
+_ACTUAL_STRATEGY_TYPES: list[type[Strategy]] = [
     SoboStrategy,
     AdditiveSoboStrategy,
     ActiveLearningStrategy,
@@ -46,3 +46,5 @@ ActualStrategy = Union[
     ShortestPathStrategy,
     FractionalFactorialStrategy,
 ]
+
+ActualStrategy = tagged_union(*_ACTUAL_STRATEGY_TYPES)
